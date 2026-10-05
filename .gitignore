@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+._*
+
+# Local install artifacts - these are built by install.sh, never committed
+/steam-wine/
+/engine/
+/prefix/
+/dxmt/
+.cache/
+*.tar.xz
+*.tar.gz
+*.pkg
+*.exe
+
+# Local overrides
+local.env
+*.local
