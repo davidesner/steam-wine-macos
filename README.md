@@ -53,8 +53,18 @@ Takes ~15 minutes, downloads ~500MB, and asks for your password once (GStreamer
 installs system-wide). Then log in and launch games from the Steam library as
 normal.
 
-> On first launch Steam shows **"Unexpected Transport Error"**. Choose
-> **"Continue Anyway"** - never "Restart Steam".
+### The one dialog you have to get right
+
+On first launch Steam shows this. It is expected, and it is **not** a sign
+anything is broken:
+
+![Unexpected Transport Error - select "VO: Continue Anyway", then OK](docs/transport-error-dialog.png)
+
+Select **"VO: Continue Anyway"**, *then* click **OK**.
+
+These are radio buttons, and the default is "Restart Steam" - clicking OK
+without changing the selection restarts Steam and brings the same dialog
+straight back. That loop is the single most common way people give up on this.
 
 ---
 

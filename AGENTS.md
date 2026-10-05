@@ -59,9 +59,12 @@ If anything fails, fix that before launching - do not proceed and hope.
 Then **tell the user these three things** - they are interactive steps you
 cannot do for them:
 
-1. **A dialog saying "Unexpected Transport Error" is expected on first run.**
-   They must choose **"Continue Anyway"**. Never "Restart Steam" - that just
-   re-enters the loop.
+1. **A dialog saying "Unexpected Transport Error (0x3008)" is expected on first
+   run.** The options are *radio buttons* defaulting to "Restart Steam". They
+   must select **"VO: Continue Anyway"** and *then* click **OK**. Clicking OK
+   without changing the selection restarts Steam and shows the same dialog
+   again. Wine does not expose these controls to macOS accessibility, so an
+   agent cannot click them - the user must.
 2. They log into Steam normally. With Steam Guard it needs **phone approval**.
 3. Once logged in, they install and launch games **from the Steam library as
    normal**. Nothing special is needed per game.

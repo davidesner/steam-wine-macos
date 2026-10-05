@@ -114,8 +114,23 @@ A fresh prefix fixed this instantly: 7 healthy webhelpers, 0 restarts.
 **Webhelper crash-loops / Steam never logs in** → check `libgnutls` first (no
 TLS = no login). Otherwise the prefix is corrupt: rebuild it.
 
-**"Unexpected Transport Error (0x3008)"** → choose **Continue Anyway**. Normal
-on first start. Never "Restart Steam" - that re-enters the loop.
+**"Unexpected Transport Error (0x3008)"** → expected on first start. The options
+are **radio buttons**, defaulting to "Restart Steam":
+
+```
+( ) Restart Steam              <- default, WRONG, re-enters the loop
+( ) Restart steamwebhelper
+(o) VO: Continue Anyway        <- select this
+( ) Exit Steam
+                    [ OK ]  [ CANCEL ]
+```
+
+Select **"VO: Continue Anyway"**, *then* click **OK**. Clicking OK without
+changing the selection restarts Steam and you get the same dialog again - that
+loop is the most common reason people abandon this setup.
+
+A screenshot of the dialog in its correct state is at
+`docs/transport-error-dialog.png` in the repository.
 
 **Game: "Failed to initialize graphics / DirectX 11"** → DXMT not loading.
 `d3d11.dll` in the engine must be ~5 MB (DXMT), not ~385 KB (builtin), and
