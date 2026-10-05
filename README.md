@@ -28,7 +28,7 @@ login).
 
 ```sh
 git clone https://github.com/davidesner/steam-wine-macos
-cd steam-wine-macos
+cd steam-wine-macos/skills/steam-wine-macos
 ./scripts/install.sh && ./scripts/verify.sh && ./scripts/launch-steam.sh
 ```
 
@@ -62,6 +62,9 @@ required.
 
 ## Commands
 
+Run from `skills/steam-wine-macos/` (or from `~/.claude/skills/steam-wine-macos/`
+once installed as a skill):
+
 ```sh
 ./scripts/install.sh        # one-time setup; idempotent, safe to re-run
 ./scripts/launch-steam.sh   # start Steam
@@ -80,7 +83,7 @@ first whenever something breaks. It also works against an existing setup:
 
 ## Documentation
 
-- **[SKILL.md](SKILL.md)** - the real guide: the stack, four hard requirements,
+- **[SKILL.md](skills/steam-wine-macos/SKILL.md)** - the real guide: the stack, four hard requirements,
   five debunked myths, troubleshooting. Read before changing anything.
 - **[AGENTS.md](AGENTS.md)** - procedure and operating rules for coding agents.
 
@@ -88,10 +91,19 @@ Also usable as a Claude Code skill, so Claude applies this knowledge
 automatically whenever you hit a Wine/Steam problem:
 
 ```sh
-# from inside this repo
+# from the repo root
 mkdir -p ~/.claude/skills
-ln -s "$(pwd)" ~/.claude/skills/steam-wine-macos
+ln -s "$(pwd)/skills/steam-wine-macos" ~/.claude/skills/steam-wine-macos
 ```
+
+Or copy it, if you would rather not keep the repo around:
+
+```sh
+cp -R skills/steam-wine-macos ~/.claude/skills/
+```
+
+The skill directory is self-contained - `SKILL.md` plus its `scripts/` - so it
+works standalone once installed.
 
 ## Scope
 
