@@ -4,6 +4,23 @@ Run the **Windows Steam client and Direct3D 11 games on Apple Silicon macOS**
 using only free and open-source components. Achieves what commercial
 compatibility layers do, at no cost.
 
+## Why this exists
+
+Getting Windows Steam working on an Apple Silicon Mac is genuinely painful. Most
+guides give up and point you at CrossOver, which is good software and worth
+paying for if you want support. But every piece needed to do it for free already
+exists and is open source: Wine, DXMT, GStreamer.
+
+The catch is that nobody tells you *which* versions work together. The most
+widely-shared free recipe cannot work at all, because those Wine builds hide a
+symbol the renderer needs. Several failures point confidently at the wrong
+component, so you end up rebuilding the thing that was never broken.
+
+I wanted my daughter to be able to play her favourite game. Getting there took a
+long evening of dead ends that all looked like something else. This repository
+is that evening, compressed into a setup that runs in about fifteen minutes, so
+nobody has to repeat it.
+
 Verified on macOS 26.5 / Apple M4 with a Unity D3D11 title, launched normally
 from the Steam library - including a from-scratch prefix build, so nothing
 beyond the components below is needed.
@@ -115,14 +132,17 @@ kernel-level anti-cheat - that will never work under Wine.
 **Expect a performance cost** from two translation layers (Rosetta 2 and
 D3D11→Metal). Lower in-game settings help.
 
-## Why this exists
+## The part that is actually worth your time
 
-The widely-shared recipe for this - *Gcenx wine-staging + DXMT* - **cannot work
-as published**, because those Wine builds hide the Metal symbols DXMT requires.
-Working that out, along with three other non-obvious requirements, took a long
-debugging session. The value here is less the scripts than knowing which
-component versions work together, and what the misleading failure symptoms
-actually mean.
+The scripts are the easy bit. The value is in
+[SKILL.md](skills/steam-wine-macos/SKILL.md): four requirements that are not
+obvious and five things people widely believe about this stack that are simply
+false. Acting on those myths is how an evening disappears.
+
+The headline example: the most-shared free recipe, *Gcenx wine-staging + DXMT*,
+**cannot work as published** - those Wine builds hide the Metal symbols DXMT
+requires. If you have tried it and failed, that is why, and it was never
+something you did wrong.
 
 ## License
 
