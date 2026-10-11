@@ -1,8 +1,9 @@
 # Instructions for coding agents
 
 You are setting up **Windows Steam and Direct3D 11 games on an Apple Silicon
-Mac** using free components. Follow this file exactly. `SKILL.md` is the
-reference for *why*; this file is the procedure.
+Mac** using free components. Follow this file exactly.
+`skills/steam-wine-macos/SKILL.md` is the reference for *why*; this file is the
+procedure. All paths below are relative to the repository root.
 
 Read `SKILL.md` before troubleshooting anything. It documents four hard
 requirements and five commonly-believed myths that are **false** - acting on
@@ -27,14 +28,14 @@ If not Apple Silicon, **stop** - this stack is Rosetta-dependent.
 ### 2. Install
 
 ```sh
-./scripts/install.sh
+./skills/steam-wine-macos/scripts/install.sh
 ```
 
 Downloads ~500MB and needs **sudo once**, for GStreamer. It is idempotent -
 safe to re-run, and it skips anything already present.
 
 The user must enter their password when prompted. If running non-interactively
-and sudo is unavailable, `./scripts/install.sh --no-sudo` skips GStreamer, but
+and sudo is unavailable, `install.sh --no-sudo` skips GStreamer, but
 tell the user plainly that intro videos will not decode and many games will
 hang on the splash screen.
 
@@ -44,7 +45,7 @@ Honour `STEAM_WINE_ROOT` (default `~/steam-wine`) and `STEAM_WINE_PREFIX`
 ### 3. Verify
 
 ```sh
-./scripts/verify.sh
+./skills/steam-wine-macos/scripts/verify.sh
 ```
 
 Every check must pass before continuing. Each failure names its consequence.
@@ -53,7 +54,7 @@ If anything fails, fix that before launching - do not proceed and hope.
 ### 4. Launch and hand over
 
 ```sh
-./scripts/launch-steam.sh
+./skills/steam-wine-macos/scripts/launch-steam.sh
 ```
 
 Then **tell the user these three things** - they are interactive steps you
@@ -93,8 +94,8 @@ Violating these causes failures that look like something else entirely:
 
 ## Diagnosing a user's existing broken setup
 
-Run `./scripts/verify.sh <engine-dir> <prefix-dir>` against it first. Then map
-the symptom:
+Run `./skills/steam-wine-macos/scripts/verify.sh <engine-dir> <prefix-dir>`
+against it first. Then map the symptom:
 
 | Symptom | Cause | Action |
 |---|---|---|
