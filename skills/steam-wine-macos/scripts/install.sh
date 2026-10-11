@@ -77,9 +77,11 @@ else
   step "installed: $(cat "$BUNDLE/version" 2>/dev/null)"
 fi
 
-# verify the Metal symbols DXMT requires - the whole reason for this engine
+# verify the Metal symbols DXMT requires - the whole reason for this engine.
+# Not `grep -q`: it exits on first match, strings dies of SIGPIPE, and
+# pipefail then reports the pipeline as failed even though the symbol exists.
 if strings "$BUNDLE/lib/wine/x86_64-unix/winemac.so" 2>/dev/null \
-   | grep -q 'macdrv_view_create_metal_view'; then
+   | grep -c 'macdrv_view_create_metal_view' >/dev/null; then
   step "Metal symbols present (required by DXMT)"
 else
   die "engine lacks macdrv_view_*_metal_* symbols - DXMT cannot work with it"
